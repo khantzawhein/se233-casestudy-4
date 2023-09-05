@@ -1,8 +1,9 @@
 package com.se233.chapter4.view;
 
 import com.se233.chapter4.Launcher;
-import com.se233.chapter4.model.Character;
+import com.se233.chapter4.model.Mario;
 import com.se233.chapter4.model.Keys;
+import com.se233.chapter4.model.Sonic;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -13,7 +14,8 @@ public class Platform extends Pane {
     public static final int HEIGHT = 400;
     public static final int GROUND = 300;
     private Image platformImg;
-    private Character character;
+    private Mario mario;
+    private Sonic sonic;
     private Keys keys;
 
     public Platform() {
@@ -22,12 +24,18 @@ public class Platform extends Pane {
         ImageView backgroundImg = new ImageView(this.platformImg);
         backgroundImg.setFitHeight(HEIGHT);
         backgroundImg.setFitWidth(WIDTH);
-        character = new Character(30, 30, 0, 0, KeyCode.A, KeyCode.D, KeyCode.W);
-        this.getChildren().addAll(backgroundImg, character);
+        mario = new Mario(30, 30, 0, 0, KeyCode.A, KeyCode.D, KeyCode.W);
+        sonic = new Sonic(700, 30, 0, 0, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP);
+
+        this.getChildren().addAll(backgroundImg, sonic, mario);
     }
 
-    public Character getCharacter() {
-        return character;
+    public Mario getMario() {
+        return mario;
+    }
+
+    public Sonic getSonic() {
+        return sonic;
     }
 
     public Keys getKeys() {

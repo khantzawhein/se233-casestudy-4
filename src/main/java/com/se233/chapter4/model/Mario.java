@@ -3,14 +3,13 @@ package com.se233.chapter4.model;
 import com.se233.chapter4.Launcher;
 import com.se233.chapter4.view.Platform;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Character extends Pane {
-    private static final Logger logger = LogManager.getLogger(Character.class);
+public class Mario extends Pane {
+    private static final Logger logger = LogManager.getLogger(Mario.class);
     public static final int CHARACTER_WIDTH = 32;
     public static final int CHARACTER_HEIGHT = 64;
     private Image characterImg;
@@ -21,15 +20,15 @@ public class Character extends Pane {
     int yVelocity = 0;
     int xAcceleration = 1;
     int yAcceleration = 1;
-    int xMaxVelocity = 7;
-    int yMaxVelocity = 17;
+    int xMaxVelocity = 10;
+    int yMaxVelocity = 15;
     boolean isFalling = true;
     boolean canJump = false;
     boolean isJumping = false;
     int highestJump = 100;
     boolean isMoveLeft, isMoveRight = false;
 
-    public Character(int x, int y, int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey) {
+    public Mario(int x, int y, int offsetX, int offsetY, KeyCode leftKey, KeyCode rightKey, KeyCode upKey) {
         this.x = x;
         this.y = y;
         this.setTranslateX(x);

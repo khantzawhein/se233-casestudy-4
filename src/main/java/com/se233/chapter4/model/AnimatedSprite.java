@@ -3,11 +3,16 @@ package com.se233.chapter4.model;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AnimatedSprite extends ImageView {
+
+    private static final Logger logger = LogManager.getLogger(AnimatedSprite.class);
     int count, columns, rows, offsetX, offsetY, width, height, curIndex, curColumnIndex = 0, curRowIndex = 0;
 
-    public AnimatedSprite(Image image, int count, int columns, int rows, int offsetX, int offsetY, int width, int height) {
+    public AnimatedSprite(Image image, int count, int columns, int rows, int offsetX,
+                          int offsetY, int width, int height) {
         this.setImage(image);
         this.count = count;
         this.columns = columns;
@@ -22,14 +27,14 @@ public class AnimatedSprite extends ImageView {
     public void tick() {
         curColumnIndex = curIndex % columns;
         curRowIndex = curIndex / columns;
-        System.out.println(curColumnIndex + " " + curRowIndex + " " + curIndex);
         curIndex = (curIndex + 1) % (columns * rows);
         interpolate();
     }
 
     protected void interpolate() {
-        final int x = curColumnIndex * width + offsetX;
-        final int y = curRowIndex * height + offsetY;
+        final int x = curColumnIndex * (width + offsetX);
+        final int y = curRowIndex * (height + offsetY);
         this.setViewport(new Rectangle2D(x, y, width, height));
+        logger.info("x:" + x + " y:" + y);
     }
 }

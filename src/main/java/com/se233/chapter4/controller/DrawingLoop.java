@@ -1,6 +1,7 @@
 package com.se233.chapter4.controller;
 
-import com.se233.chapter4.model.Character;
+import com.se233.chapter4.model.Mario;
+import com.se233.chapter4.model.Sonic;
 import com.se233.chapter4.view.Platform;
 
 public class DrawingLoop implements Runnable {
@@ -16,22 +17,27 @@ public class DrawingLoop implements Runnable {
         running = true;
     }
 
-    private void checkDrawCollisions(Character character) {
-        character.checkReachGameWall();
-        character.checkReachHighest();
-        character.checkReachFloor();
+    private void checkDrawCollisions(Mario mario, Sonic sonic) {
+        mario.checkReachGameWall();
+        mario.checkReachHighest();
+        mario.checkReachFloor();
+
+        sonic.checkReachGameWall();
+        sonic.checkReachHighest();
+        sonic.checkReachFloor();
     }
 
-    private void paint(Character character) {
-        character.repaint();
+    private void paint(Mario mario, Sonic sonic) {
+        mario.repaint();
+        sonic.repaint();
     }
 
     @Override
     public void run() {
         while (running) {
             float time = System.currentTimeMillis();
-            checkDrawCollisions(platform.getCharacter());
-            paint(platform.getCharacter());
+            checkDrawCollisions(platform.getMario(), platform.getSonic());
+            paint(platform.getMario(), platform.getSonic());
             time = System.currentTimeMillis() - time;
 
             if (time < interval) {
